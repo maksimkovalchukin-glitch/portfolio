@@ -458,6 +458,28 @@
         <div class="project-cta">Детальніше →</div>
       </div>
 
+      <div class="project-card" onclick="openModal('modal-tg')">
+        <span class="project-emoji">💬</span>
+        <span class="project-tag tag-purple">Telegram · Odoo · Автоматизація</span>
+        <div class="project-title">Project Hub — Централізована комунікація</div>
+        <p class="project-desc">
+          Кожен новий проект в Odoo → автоматично створюється Telegram-група з усіма учасниками. Discuss ↔ Telegram двостороння синхронізація. Вся комунікація в одному місці.
+        </p>
+        <div class="project-stack">
+          <span class="stack-badge">Telegram Bot API</span>
+          <span class="stack-badge">n8n</span>
+          <span class="stack-badge">Odoo Python</span>
+          <span class="stack-badge">Discuss</span>
+          <span class="stack-badge">Telethon</span>
+        </div>
+        <div class="project-results">
+          <div class="result-item">Група створюється автоматично при старті проекту</div>
+          <div class="result-item">Всі учасники додаються без ручних дій</div>
+          <div class="result-item">Повідомлення Discuss ↔ TG синхронізовані</div>
+        </div>
+        <div class="project-cta">Детальніше →</div>
+      </div>
+
       <div class="project-card" onclick="openModal('modal-odoo')">
         <span class="project-emoji">📊</span>
         <span class="project-tag tag-orange">Аналіз · Стратегія · PM</span>
@@ -581,6 +603,100 @@
   </div>
 </div>
 
+<!-- MODAL: TG Project Hub -->
+<div class="modal-overlay" id="modal-tg" onclick="handleOverlayClick(event, 'modal-tg')">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="project-tag tag-purple" style="margin-bottom:8px;">Telegram · Odoo · Автоматизація</span>
+      <div style="font-size:1.4rem; font-weight:800; line-height:1.3; padding-right:48px; color:var(--text);">💬 Project Hub — Централізована комунікація</div>
+      <button class="modal-close" onclick="closeModal('modal-tg')">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div>
+        <div class="modal-section-title">Проблема</div>
+        <p class="modal-text">
+          Комунікація по кожному проекту була розпорошена: хтось пише в Telegram, хтось в Odoo Discuss, хтось в особисті. Керівник не бачив повну картину. Нові учасники підключалися вручну. При старті проекту — 5–10 хвилин на організацію групи і запрошення людей.
+        </p>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Сценарій роботи</div>
+        <div class="modal-steps">
+          <div class="modal-step">
+            <div class="step-num">1</div>
+            <div>
+              <div class="step-content-title">Менеджер ініціює проект в Odoo</div>
+              <div class="step-content-text">Заповнює форму: клієнт, тип проекту (СЕС / УЗЕ), координати, регіон, побажання клієнта. Один клік — "Ініціювати проект".</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">2</div>
+            <div>
+              <div class="step-content-title">Odoo → n8n webhook → Telegram</div>
+              <div class="step-content-text">Webhook передає параметри проекту. n8n через Telethon API створює нову Telegram-групу з назвою проекту та автоматично додає всіх учасників за їх TG username.</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">3</div>
+            <div>
+              <div class="step-content-title">Перше повідомлення — структурований бриф</div>
+              <div class="step-content-text">Бот надсилає в групу повний бриф проекту: тип, клієнт, координати, регіон, побажання. Всі учасники одразу мають контекст без додаткових пояснень.</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">4</div>
+            <div>
+              <div class="step-content-title">Прив'язка Discuss-каналу до TG групи</div>
+              <div class="step-content-text">Odoo Discuss-канал проекту прив'язується до Telegram-групи. Всі повідомлення з Discuss синхронізуються в TG і навпаки — команда може писати де зручно.</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">5</div>
+            <div>
+              <div class="step-content-title">Завдання по етапах в Odoo Project</div>
+              <div class="step-content-text">Автоматично створюються задачі по стандартних етапах: Замір → Фінрозрахунок → КП → Договір → Оплата → Доставка → Монтаж → Пуско-налагодження. Виконавці, дедлайни, прогрес — все в Odoo.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Технічна реалізація</div>
+        <p class="modal-text">
+          Модуль <strong>rayton_project_hub</strong> на Python/Odoo 17. Кастомна форма ініціації з полями специфічними для бізнесу Rayton. Webhook-виклик до n8n при підтвердженні. n8n використовує <strong>Telethon</strong> (MTProto API) для створення груп — оскільки звичайний Bot API не дозволяє додавати учасників у групи без їх згоди. Callback-кнопки в боті для швидкої навігації між проектом в Odoo і TG групою.
+        </p>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Скріни</div>
+        <div class="screenshots-gallery">
+          <div class="gallery-slot full-width" onclick="openLightbox(this)">
+            <img src="screenshots/odoo-project-discuss.png" alt="Odoo Project Hub + Discuss + TG" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 Odoo Project Hub — завдання по етапах + Discuss чат + TG група</span>
+          </div>
+          <div class="gallery-slot" onclick="openLightbox(this)">
+            <img src="screenshots/tg-groups-workflow.png" alt="n8n TG груп воркфлоу" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 n8n — воркфлоу автоматичного створення Telegram груп</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Результат</div>
+        <div class="result-chips">
+          <div class="result-chip">Група створюється за 3 секунди</div>
+          <div class="result-chip">Всі учасники додаються автоматично</div>
+          <div class="result-chip">Discuss ↔ TG синхронізація</div>
+          <div class="result-chip">Бриф проекту одразу в групі</div>
+          <div class="result-chip">Завдання по всіх етапах автоматично</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- MODAL: Ringostat -->
 <div class="modal-overlay" id="modal-ringostat" onclick="handleOverlayClick(event, 'modal-ringostat')">
   <div class="modal">
@@ -698,8 +814,8 @@
             <span class="slot-label" style="display:none">📸 Project Hub — завдання по етапах + Discuss + TG група</span>
           </div>
           <div class="gallery-slot" onclick="openLightbox(this)">
-            <img src="screenshots/tg-groups-workflow.png" alt="TG Bot — створення груп" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <span class="slot-label" style="display:none">📸 n8n — автоматичне створення Telegram груп (CRM sync)</span>
+            <img src="screenshots/odoo-kp-tab.png" alt="Odoo — Генератор КП вкладка" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 Odoo — вкладка Генератор КП у sale.order</span>
           </div>
         </div>
       </div>
