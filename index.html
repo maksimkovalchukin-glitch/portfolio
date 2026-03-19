@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Максим Ковальчук — BA & Project Manager</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #16161f;
+    --border: rgba(255,255,255,0.08);
+    --accent: #6366f1;
+    --accent2: #818cf8;
+    --accent-glow: rgba(99,102,241,0.35);
+    --green: #10b981;
+    --text: #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-dim: #475569;
+    --card-bg: #13131a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,15,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+  .nav-logo span { color: var(--accent2); }
+
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(99,102,241,0.12);
+    border: 1px solid rgba(99,102,241,0.3);
+    border-radius: 50px;
+    padding: 6px 16px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent2);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .hero h1 .name-grad {
+    background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #818cf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-desc {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-muted);
+    max-width: 580px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  .hero-desc strong { color: var(--text); }
+
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 60px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: white;
+    padding: 12px 26px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: all 0.2s;
+    box-shadow: 0 0 24px var(--accent-glow);
+  }
+  .btn-primary:hover {
+    background: var(--accent2);
+    transform: translateY(-1px);
+    box-shadow: 0 0 36px var(--accent-glow);
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    padding: 12px 26px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.92rem;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .btn-outline:hover {
+    border-color: rgba(99,102,241,0.5);
+    color: var(--text);
+    background: rgba(99,102,241,0.06);
+  }
+
+  /* Social links */
+  .hero-socials {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: var(--card-bg);
+    transition: all 0.2s;
+  }
+  .social-link:hover {
+    border-color: rgba(99,102,241,0.4);
+    color: var(--text);
+    transform: translateY(-2px);
+  }
+
+  .social-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 32px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .stat-item {
+    flex: 1;
+    max-width: 200px;
+    text-align: center;
+    padding: 0 32px;
+    border-right: 1px solid var(--border);
+  }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-size: 2.4rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #a5b4fc, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ── SECTION ── */
+  section { padding: 100px 40px; max-width: 1200px; margin: 0 auto; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent2);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 56px;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .about-left h2 {
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+  }
+
+  .about-left p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .about-left p strong { color: var(--text); }
+
+  .about-right { display: flex; flex-direction: column; gap: 16px; }
+
+  .about-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+  .about-card:hover { border-color: rgba(99,102,241,0.3); }
+
+  .about-card-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .about-icon {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .about-card-title { font-weight: 700; font-size: 0.95rem; }
+  .about-card-sub { font-size: 0.82rem; color: var(--text-muted); }
+
+  .about-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .skill-badge {
+    background: rgba(99,102,241,0.1);
+    border: 1px solid rgba(99,102,241,0.2);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    color: var(--accent2);
+    font-weight: 500;
+  }
+
+  /* ── PROJECTS GRID ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .project-card:hover {
+    border-color: rgba(99,102,241,0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(99,102,241,0.06);
+  }
+  .project-card:hover::before { opacity: 1; }
+
+  .project-card.featured {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .project-emoji {
+    font-size: 2rem;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .project-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+
+  .tag-blue { background: rgba(37,99,235,0.15); color: #60a5fa; }
+  .tag-purple { background: rgba(139,92,246,0.15); color: #c084fc; }
+  .tag-green { background: rgba(16,185,129,0.15); color: #34d399; }
+  .tag-orange { background: rgba(249,115,22,0.15); color: #fb923c; }
+
+  .project-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+  }
+
+  .project-desc {
+    font-size: 0.87rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .stack-badge {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 3px 9px;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+
+  .project-results {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 20px;
+  }
+
+  .result-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.83rem;
+    color: var(--text-muted);
+  }
+  .result-item::before {
+    content: '→';
+    color: var(--accent2);
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+
+  .project-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--accent2);
+    cursor: pointer;
+    transition: gap 0.2s;
+  }
+  .project-cta:hover { gap: 10px; }
+
+  /* featured right col */
+  .project-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .screenshot-slot {
+    background: rgba(255,255,255,0.03);
+    border: 1px dashed rgba(255,255,255,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .screenshot-slot img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+  }
+
+  .screenshot-slot .placeholder-label {
+    position: absolute;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    text-align: center;
+    padding: 12px;
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    backdrop-filter: blur(16px);
+    z-index: 1000;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-y: auto;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 860px;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    animation: modalIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .modal-header {
+    padding: 32px 36px 24px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 24px; right: 28px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    line-height: 1;
+  }
+  .modal-close:hover {
+    background: rgba(255,255,255,0.12);
+    color: var(--text);
+  }
+
+  .modal-body {
+    padding: 32px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .modal-section-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent2);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .modal-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  .modal-text strong { color: var(--text); }
+
+  .modal-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .modal-step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: rgba(99,102,241,0.15);
+    border: 1px solid rgba(99,102,241,0.3);
+    color: var(--accent2);
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-content-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+  }
+
+  .step-content-text {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+
+  /* Screenshots gallery in modal */
+  .screenshots-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .gallery-slot {
+    background: rgba(255,255,255,0.03);
+    border: 1px dashed rgba(255,255,255,0.1);
+    border-radius: 12px;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .gallery-slot:hover { border-color: rgba(99,102,241,0.4); }
+
+  .gallery-slot img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+  }
+
+  .gallery-slot .slot-label {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    text-align: center;
+    padding: 8px;
+    pointer-events: none;
+  }
+
+  .gallery-slot.full-width {
+    grid-column: span 2;
+    aspect-ratio: 21/9;
+  }
+
+  /* Results chips */
+  .result-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .result-chip {
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.25);
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: 0.82rem;
+    color: #34d399;
+    font-weight: 500;
+  }
+
+  /* Image lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.96);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    cursor: zoom-out;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 95vw;
+    max-height: 90vh;
+    border-radius: 8px;
+    object-fit: contain;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 40px;
+    text-align: center;
+  }
+
+  .footer-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin: 16px 0;
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+
+  /* ── DIVIDER ── */
+  .full-width-section {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 40px;
+  }
+
+  .full-width-section .inner { max-width: 1200px; margin: 0 auto; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    .project-visual { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .stats-strip { flex-wrap: wrap; gap: 20px; }
+    .modal-body { padding: 24px 20px; }
+    .modal-header { padding: 24px 20px 20px; }
+    .screenshots-gallery { grid-template-columns: 1fr; }
+    .gallery-slot.full-width { grid-column: span 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Максим <span>Ковальчук</span></div>
+  <div class="nav-links">
+    <a href="#about">Про мене</a>
+    <a href="#projects">Проекти</a>
+    <a href="#contact">Контакт</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+
+  <div class="hero-badge">Відкритий до нових пропозицій</div>
+
+  <div style="margin-bottom: 24px;">
+    <img
+      src="screenshots/avatar.jpg"
+      alt="Максим Ковальчук"
+      style="width:96px; height:96px; border-radius:50%; object-fit:cover; object-position: top center; border:2px solid rgba(99,102,241,0.5); box-shadow: 0 0 32px rgba(99,102,241,0.3);"
+      onerror="this.style.display='none'"
+    >
+  </div>
+
+  <h1>
+    <span class="name-grad">Максим Ковальчук</span>
+  </h1>
+
+  <p class="hero-desc">
+    <strong>Business Analyst · Project Manager · System Integrator</strong><br>
+    Впроваджую CRM-системи, автоматизую бізнес-процеси і будую інтеграції з нуля — від збору вимог до production-деплою.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#projects" class="btn-primary">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Переглянути проекти
+    </a>
+    <a href="#contact" class="btn-outline">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      Зв'язатись
+    </a>
+  </div>
+
+  <div class="hero-socials">
+    <a class="social-link" href="https://www.linkedin.com/in/%D0%BC%D0%B0%D0%BA%D1%81%D0%B8%D0%BC-%D0%BA%D0%BE%D0%B2%D0%B0%D0%BB%D1%8C%D1%87%D1%83%D0%BA-3b5a1a249/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a class="social-link" href="https://t.me/kovalchukym" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.04 9.61c-.146.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.43 14.056l-2.95-.924c-.642-.2-.654-.642.136-.953l11.527-4.448c.537-.194 1.006.131.419 1.517z"/></svg>
+      Telegram
+    </a>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-num">4</div>
+    <div class="stat-label">end-to-end проекти</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Odoo Python-модулі</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">90+</div>
+    <div class="stat-label">n8n вузлів у production</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">AI</div>
+    <div class="stat-label">GPT-4 інтеграції</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">58</div>
+    <div class="stat-label">співробітників в системі</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-left">
+      <div class="section-tag">Про мене</div>
+      <h2>BA який розуміє<br>код зсередини</h2>
+      <p>
+        Більшість Business Analysts пишуть ТЗ і передають розробнику. Я <strong>сам реалізував усі системи</strong> — від збору вимог до деплою на production-сервер.
+      </p>
+      <p>
+        Останні роки впроваджував Odoo 17 у компанії Rayton (дистрибуція СЕС та установок збереження енергії): побудував CRM з нуля, автоматизував генерацію комерційних пропозицій, інтегрував IP-телефонію Ringostat з AI-аналізом дзвінків.
+      </p>
+      <p>
+        Розумію <strong>бізнес-логіку і технічну реалізацію</strong> одночасно — це скорочує час від ідеї до результату і виключає "загублені у перекладі" вимоги.
+      </p>
+
+      <div class="skills-grid" style="margin-top:24px;">
+        <span class="skill-badge">Odoo 17</span>
+        <span class="skill-badge">Python / ORM</span>
+        <span class="skill-badge">n8n</span>
+        <span class="skill-badge">Pipedrive</span>
+        <span class="skill-badge">Ringostat</span>
+        <span class="skill-badge">GPT-4 / AI</span>
+        <span class="skill-badge">Google Docs API</span>
+        <span class="skill-badge">Telegram Bot API</span>
+        <span class="skill-badge">BPMN</span>
+        <span class="skill-badge">Linux / SSH / DevOps</span>
+        <span class="skill-badge">JavaScript</span>
+        <span class="skill-badge">PostgreSQL</span>
+        <span class="skill-badge">Збір вимог</span>
+        <span class="skill-badge">Тестування</span>
+        <span class="skill-badge">Навчання команди</span>
+      </div>
+    </div>
+
+    <div class="about-right">
+      <div class="about-card">
+        <div class="about-card-head">
+          <div class="about-icon" style="background:rgba(99,102,241,0.15);">🎯</div>
+          <div>
+            <div class="about-card-title">Business Analysis</div>
+            <div class="about-card-sub">Вимоги, процеси, рішення</div>
+          </div>
+        </div>
+        <p>Аналіз AS-IS → проектування TO-BE. Опис вимог, комунікація з командою, тестові сесії, збір зворотного зв'язку після релізу.</p>
+      </div>
+
+      <div class="about-card">
+        <div class="about-card-head">
+          <div class="about-icon" style="background:rgba(16,185,129,0.12);">⚙️</div>
+          <div>
+            <div class="about-card-title">System Integration</div>
+            <div class="about-card-sub">Odoo · n8n · API · Webhooks</div>
+          </div>
+        </div>
+        <p>Побудова інтеграційних ланцюгів між системами. Webhook-обробники, REST API, автоматизація через n8n, кастомні Python-модулі Odoo.</p>
+      </div>
+
+      <div class="about-card">
+        <div class="about-card-head">
+          <div class="about-icon" style="background:rgba(249,115,22,0.12);">📋</div>
+          <div>
+            <div class="about-card-title">Project Management</div>
+            <div class="about-card-sub">End-to-end delivery</div>
+          </div>
+        </div>
+        <p>Веду проект від виявлення проблеми до запуску і навчання команди. Пріоритизація, планування релізів, комунікація з власниками і розробниками.</p>
+      </div>
+
+      <div class="about-card">
+        <div class="about-card-head">
+          <div class="about-icon" style="background:rgba(139,92,246,0.12);">🤖</div>
+          <div>
+            <div class="about-card-title">AI Automation</div>
+            <div class="about-card-sub">GPT-4 · Structured Output</div>
+          </div>
+        </div>
+        <p>Інтеграція GPT-4 у бізнес-процеси: AI-скоркарта оцінки дзвінків, автоматична CRM-нотатка, structured JSON output для аналітики.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<div class="full-width-section">
+  <div class="inner">
+    <div class="section-tag">Проекти</div>
+    <h2 class="section-title">Реалізовані кейси</h2>
+    <p class="section-sub">Кожен проект — від виявлення проблеми до production і навчання команди.</p>
+
+    <div class="projects-grid">
+
+      <!-- PROJECT 1: KP Generator — FEATURED -->
+      <div class="project-card featured" onclick="openModal('modal-kp')">
+        <div class="project-content">
+          <span class="project-emoji">🧾</span>
+          <span class="project-tag tag-blue">Автоматизація · n8n · Google Docs API</span>
+          <div class="project-title">Генератор комерційних пропозицій СЕС + УЗЕ</div>
+          <p class="project-desc">
+            Менеджери витрачали 1–3 год на кожен КП вручну. Побудував повний пайплайн: веб-форма → розрахунок → Google Doc шаблон → PDF → Telegram. Один клік — готовий КП.
+          </p>
+          <div class="project-stack">
+            <span class="stack-badge">n8n (90+ вузлів)</span>
+            <span class="stack-badge">Google Docs API</span>
+            <span class="stack-badge">pdf.co</span>
+            <span class="stack-badge">QuickChart</span>
+            <span class="stack-badge">JavaScript</span>
+            <span class="stack-badge">Odoo Python</span>
+          </div>
+          <div class="project-results">
+            <div class="result-item">1–3 год → 2 хвилини на підготовку КП</div>
+            <div class="result-item">9-кроковий wizard з 4 режимами розрахунку СЕС</div>
+            <div class="result-item">Автопідбір інверторів і панелей під потужність</div>
+            <div class="result-item">Кредитна логіка, графіки окупності, логотип клієнта</div>
+          </div>
+          <div class="project-cta">Детальніше →</div>
+        </div>
+        <div class="project-visual">
+          <div class="screenshot-slot">
+            <img src="screenshots/kp-app-start.png" alt="Telegram Mini App — старт генератора КП" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+            <span class="placeholder-label" style="display:none">📸 Telegram Mini App — старт</span>
+          </div>
+          <div class="screenshot-slot">
+            <img src="screenshots/kp-workflow-full.png" alt="n8n воркфлоу КП Генератор" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+            <span class="placeholder-label" style="display:none">📸 n8n воркфлоу — пайплайн генерації</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 2: Ringostat -->
+      <div class="project-card" onclick="openModal('modal-ringostat')">
+        <span class="project-emoji">📞</span>
+        <span class="project-tag tag-purple">Телефонія · AI · CRM</span>
+        <div class="project-title">Ringostat — інтеграція IP-телефонії з AI-аналізом дзвінків</div>
+        <p class="project-desc">
+          Перехід на FMC-номери Lifecell, побудова n8n воркфлоу для обробки дзвінків, AI-скоркарта оцінки якості дзвінків (КЛС) з 5 паралельними GPT-4 агентами.
+        </p>
+        <div class="project-stack">
+          <span class="stack-badge">Ringostat API</span>
+          <span class="stack-badge">n8n</span>
+          <span class="stack-badge">GPT-4</span>
+          <span class="stack-badge">Pipedrive</span>
+          <span class="stack-badge">Google Sheets</span>
+          <span class="stack-badge">Lifecell FMC</span>
+        </div>
+        <div class="project-results">
+          <div class="result-item">Кожен дзвінок → автоматична нотатка в CRM</div>
+          <div class="result-item">AI-скоркарта: 5 блоків, 100 балів, structured JSON</div>
+          <div class="result-item">Невідомий номер → автоматично новий лід у КЦ</div>
+        </div>
+        <div class="project-cta">Детальніше →</div>
+      </div>
+
+      <!-- PROJECT 3: Odoo CRM -->
+      <div class="project-card" onclick="openModal('modal-crm')">
+        <span class="project-emoji">🎯</span>
+        <span class="project-tag tag-green">Odoo 17 · Python · CRM</span>
+        <div class="project-title">Кастомна CRM-система на Odoo 17</div>
+        <p class="project-desc">
+          Повна CRM-логіка з нуля: ролі КЦ/Менеджер/Кредитний, черга менеджерів, передача лідів, КПІ по 15+ метриках, Telegram ↔ Odoo двостороння синхронізація.
+        </p>
+        <div class="project-stack">
+          <span class="stack-badge">Odoo 17 Python</span>
+          <span class="stack-badge">Telegram Bot API</span>
+          <span class="stack-badge">JavaScript OWL</span>
+          <span class="stack-badge">PostgreSQL</span>
+        </div>
+        <div class="project-results">
+          <div class="result-item">3 кастомні Python-модулі в production</div>
+          <div class="result-item">58 маппінгів TG ↔ Odoo, 83 виключені номери</div>
+          <div class="result-item">Міграція ~90% даних з Pipedrive</div>
+        </div>
+        <div class="project-cta">Детальніше →</div>
+      </div>
+
+      <!-- PROJECT 4: Odoo Analysis -->
+      <div class="project-card" onclick="openModal('modal-odoo')">
+        <span class="project-emoji">📊</span>
+        <span class="project-tag tag-orange">Аналіз · Стратегія · PM</span>
+        <div class="project-title">Аналіз доцільності та впровадження Odoo</div>
+        <p class="project-desc">
+          Порівняльний аналіз Pipedrive / Asana / Bitrix24 / Odoo, оцінка вартості двох варіантів впровадження, стратегічна рекомендація власникам компанії.
+        </p>
+        <div class="project-stack">
+          <span class="stack-badge">BPMN</span>
+          <span class="stack-badge">Аналіз вимог</span>
+          <span class="stack-badge">ROI-оцінка</span>
+          <span class="stack-badge">Odoo Community</span>
+        </div>
+        <div class="project-results">
+          <div class="result-item">Аналіз 4-х платформ за 7 критеріями</div>
+          <div class="result-item">Оцінка бюджету: власний розробник vs інтегратор</div>
+          <div class="result-item">Рішення прийнято: Odoo + штатний спеціаліст</div>
+        </div>
+        <div class="project-cta">Детальніше →</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" style="text-align:center;">
+  <div class="section-tag">Контакт</div>
+  <h2 class="section-title">Давайте поговоримо</h2>
+  <p class="section-sub" style="margin: 0 auto 40px;">
+    Відкритий до цікавих проектів у сфері впровадження CRM, автоматизації бізнес-процесів та системної інтеграції.
+  </p>
+  <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+    <a class="btn-primary" href="https://www.linkedin.com/in/%D0%BC%D0%B0%D0%BA%D1%81%D0%B8%D0%BC-%D0%BA%D0%BE%D0%B2%D0%B0%D0%BB%D1%8C%D1%87%D1%83%D0%BA-3b5a1a249/" target="_blank">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a class="btn-outline" href="https://t.me/kovalchukym" target="_blank">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.04 9.61c-.146.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.43 14.056l-2.95-.924c-.642-.2-.654-.642.136-.953l11.527-4.448c.537-.194 1.006.131.419 1.517z"/></svg>
+      Telegram @kovalchukym
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Максим Ковальчук</div>
+  <div style="font-size:0.85rem; color:var(--text-dim); margin-bottom:16px;">Business Analyst · Project Manager · System Integrator</div>
+  <div class="footer-socials">
+    <a class="social-link" href="https://www.linkedin.com/in/%D0%BC%D0%B0%D0%BA%D1%81%D0%B8%D0%BC-%D0%BA%D0%BE%D0%B2%D0%B0%D0%BB%D1%8C%D1%87%D1%83%D0%BA-3b5a1a249/" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a class="social-link" href="https://t.me/kovalchukym" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248l-2.04 9.61c-.146.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.43 14.056l-2.95-.924c-.642-.2-.654-.642.136-.953l11.527-4.448c.537-.194 1.006.131.419 1.517z"/></svg>
+      Telegram
+    </a>
+  </div>
+  <div class="footer-copy">© 2026 Максим Ковальчук</div>
+</footer>
+
+
+<!-- ════════════════════════════════
+     MODALS
+════════════════════════════════ -->
+
+<!-- MODAL: KP Generator -->
+<div class="modal-overlay" id="modal-kp" onclick="handleOverlayClick(event, 'modal-kp')">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="project-tag tag-blue" style="margin-bottom:8px;">Автоматизація · n8n · Google Docs API</span>
+      <div style="font-size:1.45rem; font-weight:800; line-height:1.3; padding-right:48px;">🧾 Генератор комерційних пропозицій СЕС + УЗЕ</div>
+      <button class="modal-close" onclick="closeModal('modal-kp')">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div>
+        <div class="modal-section-title">Проблема</div>
+        <p class="modal-text">
+          Менеджери з продажу витрачали <strong>1–3 години</strong> на підготовку кожного комерційного КП вручну: зібрати параметри об'єкту, вибрати обладнання, порахувати потужність і економіку, заповнити шаблон Word, сконвертувати в PDF, надіслати клієнту. При 10–15 запитах на тиждень — це критичне навантаження, яке гальмувало швидкість відповіді і впливало на конверсію.
+        </p>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Збір вимог</div>
+        <div class="modal-steps">
+          <div class="modal-step">
+            <div class="step-num">1</div>
+            <div>
+              <div class="step-content-title">Інтерв'ю з менеджерами і керівником продажів</div>
+              <div class="step-content-text">4 режими розрахунку (за споживанням, потужністю, площею даху, вручну). Два напрямки: СЕС (сонячні станції від 100 кВт) і УЗЕ (установки збереження енергії від 233 кВт·год). Фінал — PDF у чаттері угоди без ручних кроків.</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">2</div>
+            <div>
+              <div class="step-content-title">Опис бізнес-логіки</div>
+              <div class="step-content-text">Greedy-алгоритм підбору інверторів (заповнювати ≥100 кВт спочатку, потім малі). DC/AC ratio 1.28, ліміти 1.1–1.5. Кредитна логіка за диференційованою схемою (не ануїтет). 24 регіони → 5 зон сонячної інсоляції.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Розробка — два рішення</div>
+        <div class="modal-steps">
+          <div class="modal-step">
+            <div class="step-num">A</div>
+            <div>
+              <div class="step-content-title">Universal Generator KP — веб-додаток</div>
+              <div class="step-content-text">9-кроковий wizard для менеджерів зі смартфона. Каталог обладнання (6 панелей, 7 інверторів) у n8n static data. Панель адміна для оновлення каталогу без коду. Розрахунок кредиту, графіки окупності, завантаження логотипу клієнта.</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">B</div>
+            <div>
+              <div class="step-content-title">Odoo-модуль rayton_sale_kp</div>
+              <div class="step-content-text">Вкладка "Генератор КП" прямо у картці договору в Odoo. Odoo → n8n webhook → Google Doc шаблон → batch заміна 50+ змінних → видалення порожніх рядків → вставка графіків та зображень → pdf.co pipeline → PDF назад в Odoo.</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">C</div>
+            <div>
+              <div class="step-content-title">n8n воркфлоу — 90+ вузлів</div>
+              <div class="step-content-text">SES гілка: Calculate → Charts (QuickChart API, 1200×570px) → Копіювання шаблону → Docs batchUpdate → Видалення порожніх рядків → Вставка зображень → pdf.co (Upload → Delete pages → Add Logo → Binary) → Telegram підтвердження + Google Drive збереження. Аналогічно для УЗЕ.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Скріни</div>
+        <div class="screenshots-gallery">
+          <div class="gallery-slot full-width" onclick="openLightbox(this)">
+            <img src="screenshots/kp-workflow-full.png" alt="n8n КП Генератор — повна схема SES+UZE" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 n8n воркфлоу — повна схема пайплайну генерації (SES + UZE гілки)</span>
+          </div>
+          <div class="gallery-slot" onclick="openLightbox(this)">
+            <img src="screenshots/kp-app-start.png" alt="Telegram Mini App — вибір типу КП" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 Telegram Mini App — вибір СЕС / УЗЕ</span>
+          </div>
+          <div class="gallery-slot" onclick="openLightbox(this)">
+            <img src="screenshots/kp-app-dashboard.png" alt="Mini App дашборд — збережені КП" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 Mini App — дашборд зі збереженими КП</span>
+          </div>
+          <div class="gallery-slot" onclick="openLightbox(this)">
+            <img src="screenshots/odoo-kp-tab.png" alt="Odoo — вкладка Генератор КП" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 Odoo — вкладка Генератор КП у картці угоди</span>
+          </div>
+          <div class="gallery-slot" onclick="openLightbox(this)">
+            <img src="screenshots/kp-app-uze-form.png" alt="Mini App — УЗЕ форма" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 Telegram Mini App — УЗЕ форма параметрів</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Навчання та релізи</div>
+        <p class="modal-text">
+          Записано навчальні відео для менеджерів по обох варіантах. Після першого релізу зібрано правки: real-time DC/AC ratio hint, виправлення помилки в ключах каталогу, калібровка pdf.co pipeline (~9 кредитів/запит). Повторний реліз задеплоєно через n8n API.
+        </p>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Результат</div>
+        <div class="result-chips">
+          <div class="result-chip">1–3 год → 2 хв на КП</div>
+          <div class="result-chip">~1900 КП на Basic план pdf.co</div>
+          <div class="result-chip">2 паралельні системи в production</div>
+          <div class="result-chip">Підтримка СЕС + УЗЕ</div>
+          <div class="result-chip">Каталог керується без коду</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Ringostat -->
+<div class="modal-overlay" id="modal-ringostat" onclick="handleOverlayClick(event, 'modal-ringostat')">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="project-tag tag-purple" style="margin-bottom:8px;">Телефонія · AI · CRM</span>
+      <div style="font-size:1.45rem; font-weight:800; line-height:1.3; padding-right:48px;">📞 Ringostat — IP-телефонія + AI-аналіз дзвінків</div>
+      <button class="modal-close" onclick="closeModal('modal-ringostat')">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div>
+        <div class="modal-section-title">Проблема</div>
+        <p class="modal-text">
+          Менеджери дзвонили з особистих мобільних — жодної фіксації в CRM, жодних записів розмов, неможливо оцінити якість роботи КЦ. КЦ і відділ продажів — повністю "чорна скринька" для керівника.
+        </p>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Оцінка та перехід</div>
+        <div class="modal-steps">
+          <div class="modal-step">
+            <div class="step-num">1</div>
+            <div>
+              <div class="step-content-title">Аналіз платформ і вибір Ringostat</div>
+              <div class="step-content-text">Оцінено webhook-подієву модель, вартість, зберігання записів, API для інтеграцій. Ringostat обрано за нативну підтримку FMC і якість транскрипції.</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">2</div>
+            <div>
+              <div class="step-content-title">Комунікація з Lifecell — FMC-номери</div>
+              <div class="step-content-text">Переговори щодо підключення Fixed Mobile Convergence: корпоративні SIM-картки прив'язані до SIP-лінії АТС Ringostat. Менеджери зберегли звичні мобільні номери — всі дзвінки проходять через систему і записуються.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-title">n8n воркфлоу — Вхідні та Вихідні дзвінки</div>
+        <p class="modal-text" style="margin-bottom:12px;">
+          Кожен дзвінок → webhook у n8n → автоматична обробка за сценарієм:
+        </p>
+        <div class="modal-steps">
+          <div class="modal-step">
+            <div class="step-num">→</div>
+            <div>
+              <div class="step-content-title">Фільтрація внутрішніх номерів</div>
+              <div class="step-content-text">83 виключені SIP/мобільні номери співробітників у Google Sheets — дзвінки між своїми не потрапляють у CRM.</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">→</div>
+            <div>
+              <div class="step-content-title">Розподіл по відділах і типах</div>
+              <div class="step-content-text">Switch-вузли: тип дзвінка (NO ANSWER / ANSWERED / BUSY) × відділ (Оператор КЦ / Менеджер / Кредитний). Для кожної комбінації — свій сценарій дії в CRM.</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">→</div>
+            <div>
+              <div class="step-content-title">Знайдений / незнайдений контакт</div>
+              <div class="step-content-text">Відомий номер → прив'язка до угоди → активність у чаттері. Невідомий номер → автоматичне створення контакту + нового ліда у КЦ з позначкою "потребує кваліфікації".</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-title">AI "Коротка вижимка розмови"</div>
+        <p class="modal-text">
+          Після завершення дзвінка GPT-4 отримує транскрипцію (<code>utterances</code>) і генерує <strong>HTML-нотатку для CRM</strong>: суть розмови, потреби клієнта, запропоноване рішення, наступні кроки, ступінь зацікавленості клієнта у % (шкала 1–100%). Нотатка автоматично оновлює активність у Pipedrive/Odoo.
+        </p>
+      </div>
+
+      <div>
+        <div class="modal-section-title">AI Скоркарта оцінки дзвінків (КЛС)</div>
+        <p class="modal-text" style="margin-bottom:16px;">
+          Збір вимог до системи оцінки: інтерв'ю з керівником КЦ → опис критеріїв → реалізація через <strong>5 паралельних GPT-4 агентів</strong> зі Structured Output Parser (JSON):
+        </p>
+        <div style="overflow-x:auto; margin-bottom:4px;">
+          <table style="width:100%; border-collapse:collapse; font-size:0.84rem;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border);">
+                <th style="text-align:left; padding:8px 12px; color:var(--text-muted); font-weight:600;">Агент</th>
+                <th style="text-align:left; padding:8px 12px; color:var(--text-muted); font-weight:600;">Блок оцінки</th>
+                <th style="text-align:right; padding:8px 12px; color:var(--text-muted); font-weight:600;">Макс. балів</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:8px 12px; color:var(--accent2);">Greating</td>
+                <td style="padding:8px 12px; color:var(--text-muted);">Привітання + Завершення дзвінка</td>
+                <td style="padding:8px 12px; text-align:right; color:var(--text);">15</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:8px 12px; color:var(--accent2);">Needs</td>
+                <td style="padding:8px 12px; color:var(--text-muted);">Виявлення потреб (профіль ≥100 кВт / ≥233 кВт·год)</td>
+                <td style="padding:8px 12px; text-align:right; color:var(--text);">25</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:8px 12px; color:var(--accent2);">Solution</td>
+                <td style="padding:8px 12px; color:var(--text-muted);">Презентація рішення + Робота із запереченнями</td>
+                <td style="padding:8px 12px; text-align:right; color:var(--text);">35</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(255,255,255,0.04);">
+                <td style="padding:8px 12px; color:var(--accent2);">Agreement</td>
+                <td style="padding:8px 12px; color:var(--text-muted);">Домовленість + Додатково</td>
+                <td style="padding:8px 12px; text-align:right; color:var(--text);">15</td>
+              </tr>
+              <tr>
+                <td style="padding:8px 12px; color:var(--accent2);">Summary</td>
+                <td style="padding:8px 12px; color:var(--text-muted);">Фінальна HTML-нотатка з total_score + зацікавленість %</td>
+                <td style="padding:8px 12px; text-align:right; color:var(--text);">—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="modal-text" style="margin-top:12px; font-size:0.82rem;">
+          Розумна логіка: якщо клієнт <em>нецільовий</em> (перенаправляє, некомпетентний) — агент виставляє максимум по своєму блоку, щоб оператор не отримував штраф за ситуацію поза його контролем.
+        </p>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Скріни</div>
+        <div class="screenshots-gallery">
+          <div class="gallery-slot full-width" onclick="openLightbox(this)">
+            <img src="screenshots/ringostat-workflow.png" alt="Вхідні дзвінки Ringostat — n8n воркфлоу" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 n8n — воркфлоу "Вхідні дзвінки Ringostat" (повна схема)</span>
+          </div>
+          <div class="gallery-slot" onclick="openLightbox(this)">
+            <img src="screenshots/call-analysis-workflow.png" alt="Call Analysis — 5 паралельних AI агентів" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 n8n — Call Analysis: 5 паралельних GPT-4 агентів</span>
+          </div>
+          <div class="gallery-slot" onclick="openLightbox(this)">
+            <img src="screenshots/odoo-crm-ai-call.png" alt="CRM — AI нотатка дзвінка з оцінкою КЛС" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 Odoo CRM — AI вижимка дзвінка, КЛС: 43, зацікавленість: 55%</span>
+          </div>
+          <div class="gallery-slot" onclick="openLightbox(this)">
+            <img src="screenshots/tg-groups-workflow.png" alt="TG Bot — створення груп воркфлоу" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 n8n — TG Bot автоматичне створення Telegram груп</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Результат</div>
+        <div class="result-chips">
+          <div class="result-chip">100% дзвінків фіксуються в CRM</div>
+          <div class="result-chip">AI-оцінка кожного дзвінка автоматично</div>
+          <div class="result-chip">Невідомий номер → лід без участі людини</div>
+          <div class="result-chip">КЛС аналітика в Google Sheets</div>
+          <div class="result-chip">Захист від несправедливої оцінки операторів</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Odoo CRM -->
+<div class="modal-overlay" id="modal-crm" onclick="handleOverlayClick(event, 'modal-crm')">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="project-tag tag-green" style="margin-bottom:8px;">Odoo 17 · Python · CRM</span>
+      <div style="font-size:1.45rem; font-weight:800; line-height:1.3; padding-right:48px;">🎯 Кастомна CRM-система на Odoo 17</div>
+      <button class="modal-close" onclick="closeModal('modal-crm')">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div>
+        <div class="modal-section-title">Проблема</div>
+        <p class="modal-text">
+          Pipedrive покривав лише воронку продажів і не мав інструментів для кастомної логіки КЦ: розподіл лідів між операторами, черга менеджерів, передача між відділами, облік дзвінків, КПІ-аналітика. Кожна спроба зробити це у Pipedrive вимагала обхідних рішень.
+        </p>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Реалізовано</div>
+        <div class="modal-steps">
+          <div class="modal-step">
+            <div class="step-num">1</div>
+            <div>
+              <div class="step-content-title">Ролі та права доступу (4 групи)</div>
+              <div class="step-content-text">Оператор КЦ, Менеджер з продажу, Кредитний спеціаліст, Керівник КЦ. Кожна роль бачить тільки свою частину CRM.</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">2</div>
+            <div>
+              <div class="step-content-title">Черга менеджерів і передача лідів</div>
+              <div class="step-content-text">3 типи черги (KCC / incoming / credit), пауза менеджера, лічильник лідів. Wizard передачі ліда між операторами і менеджерами з логом усіх переміщень.</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">3</div>
+            <div>
+              <div class="step-content-title">КПІ менеджерів — 15+ метрик</div>
+              <div class="step-content-text">Дашборд по кожному менеджеру: ліди з комунікацією, заплановані активності, прострочені, зустрічі, дзвінки Ringostat (total / answered / missed / minutes).</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">4</div>
+            <div>
+              <div class="step-content-title">Telegram ↔ Odoo двостороння синхронізація</div>
+              <div class="step-content-text">Нативно через Telegram Bot API (без n8n). Текст, фото, документи, голосові — в обидва боки. 58 маппінгів TG username → Odoo user завантажені з Excel.</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">5</div>
+            <div>
+              <div class="step-content-title">Міграція Pipedrive → Odoo (~90%)</div>
+              <div class="step-content-text">Перенесення угод, контактів, компаній, активностей. Скрипт через Pipedrive API + Odoo RPC. ~1110 orphan-контактів у черзі + ЄДРПОУ збагачення.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Скріни</div>
+        <div class="screenshots-gallery">
+          <div class="gallery-slot" onclick="openLightbox(this)">
+            <img src="screenshots/odoo-crm-ai-call.png" alt="Odoo CRM — картка ліда з AI дзвінком" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 Odoo CRM — картка ліда, кастомне меню, AI дзвінок</span>
+          </div>
+          <div class="gallery-slot" onclick="openLightbox(this)">
+            <img src="screenshots/odoo-kp-tab.png" alt="Odoo — Генератор КП вкладка" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 Odoo — вкладка Генератор КП у sale.order</span>
+          </div>
+          <div class="gallery-slot" onclick="openLightbox(this)">
+            <img src="screenshots/odoo-project-discuss.png" alt="Project Hub — Discuss + Telegram група" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 Odoo Project Hub — завдання по етапах + Discuss чат + TG група</span>
+          </div>
+          <div class="gallery-slot" onclick="openLightbox(this)">
+            <img src="screenshots/ringostat-workflow.png" alt="Ringostat воркфлоу" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 n8n — інтеграція Ringostat з Pipedrive/Odoo</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Результат</div>
+        <div class="result-chips">
+          <div class="result-chip">3 Python-модулі в production</div>
+          <div class="result-chip">58 співробітників у системі</div>
+          <div class="result-chip">90% даних мігровано з Pipedrive</div>
+          <div class="result-chip">11 кастомних типів активностей</div>
+          <div class="result-chip">Одна система замість 3-х інструментів</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Odoo Strategy -->
+<div class="modal-overlay" id="modal-odoo" onclick="handleOverlayClick(event, 'modal-odoo')">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="project-tag tag-orange" style="margin-bottom:8px;">Аналіз · Стратегія · PM</span>
+      <div style="font-size:1.45rem; font-weight:800; line-height:1.3; padding-right:48px;">📊 Аналіз доцільності та стратегія впровадження Odoo</div>
+      <button class="modal-close" onclick="closeModal('modal-odoo')">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <div>
+        <div class="modal-section-title">Контекст</div>
+        <p class="modal-text">
+          Компанія Rayton (60+ співробітників, 12 відділів) використовувала Pipedrive для CRM, Asana для задач, Google Sheets для всього іншого — без єдиної системи. Потрібно було обґрунтувати перехід на нову платформу і захистити рішення перед власниками.
+        </p>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Порівняльний аналіз платформ</div>
+        <p class="modal-text" style="margin-bottom:14px;">Оцінено 4 платформи за 7 критеріями:</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px; padding:14px;">
+            <div style="font-size:0.8rem; color:var(--text-dim); margin-bottom:6px;">Pipedrive</div>
+            <div style="font-size:0.85rem; color:var(--text-muted);">Тільки CRM. Склад, проекти, кастомна логіка — відсутні.</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px; padding:14px;">
+            <div style="font-size:0.8rem; color:var(--text-dim); margin-bottom:6px;">Asana / Jira</div>
+            <div style="font-size:0.85rem; color:var(--text-muted);">Тільки задачі. CRM, документи, склад — відсутні.</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:10px; padding:14px;">
+            <div style="font-size:0.8rem; color:var(--text-dim); margin-bottom:6px;">Bitrix24</div>
+            <div style="font-size:0.85rem; color:var(--text-muted);">Частково покриває, але жорстка архітектура, слабка кастомізація.</div>
+          </div>
+          <div style="background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.3); border-radius:10px; padding:14px;">
+            <div style="font-size:0.8rem; color:var(--accent2); margin-bottom:6px;">✦ Odoo — обрано</div>
+            <div style="font-size:0.85rem; color:var(--text-muted);">CRM + проекти + склад + генерація документів + кастомна Python-логіка в одній платформі.</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Оцінка варіантів впровадження</div>
+        <div class="modal-steps">
+          <div class="modal-step">
+            <div class="step-num">A</div>
+            <div>
+              <div class="step-content-title">Власний Odoo-розробник в штаті</div>
+              <div class="step-content-text">~$2–3 тис/міс. Повний контроль, знання бізнесу зсередини, швидка реакція. Ризик: важко знайти (рідкий стек Python+Odoo+DevOps), залежність від однієї людини.</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">B</div>
+            <div>
+              <div class="step-content-title">Команда інтеграторів (Netframe)</div>
+              <div class="step-content-text">47–66 тис. € проект + 2–6 тис. €/міс підтримка. Висока якість архітектури, DevOps включено, команда vs 1 людина. Мінус: довший старт (14–18 міс), менший контроль.</div>
+            </div>
+          </div>
+          <div class="modal-step">
+            <div class="step-num">★</div>
+            <div>
+              <div class="step-content-title">Рекомендований: Гібридний варіант</div>
+              <div class="step-content-text">Найняти відповідальну людину в штат (BA/PM який розуміє Odoo) — вона керує інтеграторами, ставить задачі, контролює якість, захищає інтереси компанії. Inтегратори закладають архітектуру, штатний — розвиває.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Фінальне рішення</div>
+        <p class="modal-text">
+          <strong>Odoo — підтверджено.</strong> За час пілоту реалізовано 3 production-модулі і доведено, що логіка Rayton вписується в платформу. 40% процесів вже автоматизовано. Рекомендація прийнята: пошук штатного Odoo-спеціаліста, який буде куратором системи і точкою контролю над будь-якими зовнішніми підрядниками.
+        </p>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Скріни</div>
+        <div class="screenshots-gallery">
+          <div class="gallery-slot full-width" onclick="openLightbox(this)">
+            <img src="screenshots/odoo-crm-ai-call.png" alt="Odoo CRM — повна картка ліда" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 Odoo CRM — картка ліда з кастомним меню та AI дзвінком</span>
+          </div>
+          <div class="gallery-slot" onclick="openLightbox(this)">
+            <img src="screenshots/odoo-project-discuss.png" alt="Project Hub + Telegram синхронізація" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 Project Hub — етапи проекту + Discuss + TG група</span>
+          </div>
+          <div class="gallery-slot" onclick="openLightbox(this)">
+            <img src="screenshots/kp-workflow-full.png" alt="КП Генератор — n8n воркфлоу" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="slot-label" style="display:none">📸 n8n — масштаб реалізованої автоматизації</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="modal-section-title">Результат</div>
+        <div class="result-chips">
+          <div class="result-chip">Рішення прийнято власниками</div>
+          <div class="result-chip">Odoo в production на 60+ користувачів</div>
+          <div class="result-chip">40% процесів автоматизовано</div>
+          <div class="result-chip">Стратегічний roadmap на 12 місяців</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  // Modal open/close
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e, id) {
+    if (e.target === document.getElementById(id)) closeModal(id);
+  }
+
+  // Close on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(m => {
+        m.classList.remove('open');
+      });
+      document.body.style.overflow = '';
+      closeLightbox();
+    }
+  });
+
+  function openLightbox(slot) {
+    const img = slot.querySelector('img');
+    if (!img || img.style.display === 'none') return;
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+
+  // Smooth scroll for nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
