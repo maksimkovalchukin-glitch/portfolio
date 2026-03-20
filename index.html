@@ -522,18 +522,46 @@
         </div>
       </div>
 
+      <!-- 3: Аналіз доцільності Odoo -->
+      <div class="project-card featured" onclick="openModal('modal-odoo')">
+        <div class="project-content">
+        <span class="project-tag tag-orange">Аналіз · Стратегія · PM</span>
+        <div class="project-title">Аналіз доцільності та впровадження Odoo</div>
+        <p class="project-desc">Компанія росла, а інструменти не масштабувались — 10 різних систем без єдиного центру. Провів аналіз потреб, порівняв платформи, обґрунтував вибір Odoo та запустив впровадження.</p>
+        <div class="project-stack">
+          <span class="stack-badge">Аналіз вимог</span><span class="stack-badge">ROI-оцінка</span>
+          <span class="stack-badge">Odoo Community</span><span class="stack-badge">Python</span>
+        </div>
+        <div class="project-results">
+          <div class="result-item">Порівняння 4 платформ: Pipedrive / Asana / Bitrix24 / Odoo</div>
+          <div class="result-item">Оцінка бюджету: власний розробник vs інтегратор</div>
+          <div class="result-item">Рішення прийнято і запущено: Odoo + штатний спеціаліст</div>
+        </div>
+        <div class="project-cta">Детальніше →</div>
+        </div>
+        <div class="project-visual">
+          <div class="screenshot-slot">
+            <img src="screenshots/odoo-crm-ai-call.png" alt="Odoo CRM">
+          </div>
+          <div class="screenshot-slot">
+            <img src="screenshots/odoo-project-tasks-alt.png" alt="Odoo Project Tasks">
+          </div>
+        </div>
+      </div>
+
+      <!-- 4: Кастомна логіка Odoo CRM -->
       <div class="project-card featured" onclick="openModal('modal-crm')">
         <div class="project-content">
         <span class="project-tag tag-green">Odoo 17 · Python · CRM</span>
-        <div class="project-title">Кастомна CRM-система на Odoo 17</div>
-        <p class="project-desc">Повна CRM-логіка з нуля: ролі КЦ/Менеджер/Кредитний, черга менеджерів, передача лідів, КПІ по 15+ метриках, Telegram ↔ Odoo двостороння синхронізація.</p>
+        <div class="project-title">Кастомна бізнес-логіка CRM на Odoo 17</div>
+        <p class="project-desc">Стандартний Odoo не покривав специфіку роботи КЦ і менеджерів. Зібрав вимоги від усіх ролей, спроектував і впровадив кастомні модулі під процес компанії.</p>
         <div class="project-stack">
           <span class="stack-badge">Odoo 17 Python</span><span class="stack-badge">Telegram Bot API</span>
           <span class="stack-badge">JavaScript OWL</span><span class="stack-badge">PostgreSQL</span>
         </div>
         <div class="project-results">
-          <div class="result-item">3 кастомні Python-модулі в production</div>
-          <div class="result-item">58 маппінгів TG ↔ Odoo, 83 виключені номери</div>
+          <div class="result-item">Ролі КЦ / Менеджер / Кредитний — кожен бачить тільки своє</div>
+          <div class="result-item">Черга менеджерів, передача лідів, КПІ по 15+ метриках</div>
           <div class="result-item">Міграція ~90% даних з Pipedrive</div>
         </div>
         <div class="project-cta">Детальніше →</div>
@@ -548,13 +576,12 @@
         </div>
       </div>
 
+      <!-- 5: Централізована комунікація -->
       <div class="project-card featured" onclick="openModal('modal-tg')">
         <div class="project-content">
         <span class="project-tag tag-purple">Telegram · Odoo · Автоматизація</span>
-        <div class="project-title">Project Hub — Централізована комунікація</div>
-        <p class="project-desc">
-          Кожен новий проект в Odoo → автоматично створюється Telegram-група з усіма учасниками. Discuss ↔ Telegram двостороння синхронізація. Вся комунікація в одному місці.
-        </p>
+        <div class="project-title">Централізована комунікація — TG бот і Project Hub</div>
+        <p class="project-desc">Менеджери вели проекти в різних чатах без структури. Побудував систему: ініціація проекту в Odoo → автоматичне створення TG-групи → додавання учасників → синхронізація повідомлень в обидва боки.</p>
         <div class="project-stack">
           <span class="stack-badge">Telegram Bot API</span>
           <span class="stack-badge">n8n</span>
@@ -563,9 +590,9 @@
           <span class="stack-badge">Telethon</span>
         </div>
         <div class="project-results">
-          <div class="result-item">Група створюється автоматично при старті проекту</div>
-          <div class="result-item">Всі учасники додаються без ручних дій</div>
-          <div class="result-item">Повідомлення Discuss ↔ TG синхронізовані</div>
+          <div class="result-item">Проект створено в Odoo → TG-група з учасниками автоматично</div>
+          <div class="result-item">Discuss ↔ Telegram двостороння синхронізація</div>
+          <div class="result-item">Вся комунікація по проекту в одному місці</div>
         </div>
         <div class="project-cta">Детальніше →</div>
         </div>
@@ -579,31 +606,6 @@
         </div>
       </div>
 
-      <div class="project-card featured" onclick="openModal('modal-odoo')">
-        <div class="project-content">
-        <span class="project-tag tag-orange">Аналіз · Стратегія · PM</span>
-        <div class="project-title">Аналіз доцільності та впровадження Odoo</div>
-        <p class="project-desc">Порівняльний аналіз Pipedrive / Asana / Bitrix24 / Odoo, оцінка вартості двох варіантів впровадження, стратегічна рекомендація власникам компанії.</p>
-        <div class="project-stack">
-          <span class="stack-badge">BPMN</span><span class="stack-badge">Аналіз вимог</span>
-          <span class="stack-badge">ROI-оцінка</span><span class="stack-badge">Odoo Community</span>
-        </div>
-        <div class="project-results">
-          <div class="result-item">Аналіз 4-х платформ за 7 критеріями</div>
-          <div class="result-item">Оцінка бюджету: власний розробник vs інтегратор</div>
-          <div class="result-item">Рішення прийнято: Odoo + штатний спеціаліст</div>
-        </div>
-        <div class="project-cta">Детальніше →</div>
-        </div>
-        <div class="project-visual">
-          <div class="screenshot-slot">
-            <img src="screenshots/odoo-crm-ai-call.png" alt="Odoo CRM">
-          </div>
-          <div class="screenshot-slot">
-            <img src="screenshots/odoo-project-tasks-alt.png" alt="Odoo Project Tasks">
-          </div>
-        </div>
-      </div>
 
     </div>
   </div>
