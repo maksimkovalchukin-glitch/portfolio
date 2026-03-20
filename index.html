@@ -6,7 +6,7 @@
 <title>Максим Ковальчук — AI Automation · BA · PM</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;800;900&family=Caveat:wght@600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -133,9 +133,15 @@
   }
   @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-  .hero h1 { font-size: clamp(2.8rem, 5vw, 4.4rem); font-weight: 900; line-height: 1.06; letter-spacing: -2.5px; margin-bottom: 10px; color: var(--text); }
-  .hero-roles { font-size: 1.05rem; font-weight: 600; color: var(--accent); margin-bottom: 20px; }
-  .hero-desc { font-size: 1rem; color: var(--text-muted); max-width: 480px; line-height: 1.78; margin-bottom: 36px; }
+  .hero h1 { font-size: clamp(2.6rem, 4.5vw, 4rem); font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 12px; color: var(--text); }
+  .hero h1 .cursive-name { font-family: 'Caveat', cursive; font-weight: 600; color: var(--accent); letter-spacing: 0; font-size: 1.15em; }
+  .hero-subtitle { font-size: 1.15rem; font-weight: 400; color: var(--text-muted); margin-bottom: 28px; letter-spacing: -0.2px; }
+  .hero-subtitle strong { color: var(--text); font-weight: 700; }
+  .hero-desc {
+    font-size: 0.95rem; color: var(--text-muted); max-width: 460px;
+    line-height: 1.78; margin-bottom: 36px;
+    border-left: 3px solid var(--accent); padding-left: 16px;
+  }
 
   .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
 
@@ -348,10 +354,10 @@
   <div class="hero">
     <div class="hero-left">
       <div class="hero-badge">Відкритий до нових пропозицій</div>
-      <h1>Максим<br>Ковальчук</h1>
-      <div class="hero-roles">Business Analyst · Project Manager · AI Automation</div>
+      <h1>Привіт, я <span class="cursive-name">Максим,</span></h1>
+      <div class="hero-subtitle"><strong>Бізнес-аналітик</strong> з досвідом проектного менеджменту та впровадження інтеграцій і автоматизацій</div>
       <p class="hero-desc">
-        Аналізую процеси, збираю вимоги, описую їх так щоб розробники розуміли з першого разу. Розумію технічну сторону — міст між бізнесом і командою розробки.
+        Аналізую процеси, знаходжу де бізнес втрачає час — і впроваджую рішення. Від збору вимог до готового продукту в production.
       </p>
       <div class="hero-actions">
         <a href="#projects" class="btn-primary">
