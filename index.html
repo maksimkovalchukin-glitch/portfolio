@@ -149,19 +149,13 @@
   .section-sub { font-size: 1rem; color: var(--text-muted); max-width: 520px; line-height: 1.7; margin-bottom: 52px; }
 
   /* ABOUT */
-  .about-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; align-items: start; }
-  .about-left h2 { font-size: clamp(1.6rem, 2.5vw, 2.1rem); font-weight: 800; line-height: 1.25; letter-spacing: -0.5px; margin-bottom: 18px; color: var(--text); }
-  .about-left p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 14px; }
-  .about-left p strong { color: var(--text); }
-  .about-right { display: flex; flex-direction: column; gap: 12px; }
-  .about-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; transition: all 0.2s; box-shadow: var(--shadow-sm); }
-  .about-card:hover { border-color: rgba(99,102,241,0.25); box-shadow: var(--shadow-md); transform: translateY(-1px); }
-  .about-card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-  .about-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
-  .about-card-title { font-weight: 700; font-size: 0.92rem; color: var(--text); }
-  .about-card-sub { font-size: 0.78rem; color: var(--text-dim); }
-  .about-card p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.6; }
-  .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .about-statement { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 52px; }
+  .about-headline { font-size: clamp(2.4rem, 3.8vw, 3.6rem); font-weight: 900; line-height: 1.08; letter-spacing: -2px; color: var(--text); }
+  .about-headline span { color: var(--accent); }
+  .about-body p { font-size: 0.98rem; color: var(--text-muted); line-height: 1.82; margin-bottom: 18px; }
+  .about-body p:last-child { margin-bottom: 0; }
+  .about-body strong { color: var(--text); }
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0; }
   .skill-badge { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 5px 12px; font-size: 0.8rem; color: var(--text-muted); font-weight: 500; transition: all 0.2s; }
   .skill-badge:hover { background: var(--accent-light); border-color: rgba(99,102,241,0.2); color: var(--accent-text); }
 
@@ -245,8 +239,7 @@
     .projects-grid { grid-template-columns: 1fr; }
     .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
     .project-visual { display: none; }
-    .about-grid { grid-template-columns: 1fr; }
-    .stats-strip { flex-wrap: wrap; gap: 16px; padding: 24px; }
+    .about-statement { grid-template-columns: 1fr; gap: 32px; }
     section { padding: 60px 24px; }
     .full-width-section { padding: 60px 24px; }
     .modal-body { padding: 20px 18px; }
@@ -311,9 +304,16 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-tag">Про мене</div>
-  <h2 class="section-title">Автоматизую процеси,<br>впроваджую AI у бізнес</h2>
-  <p class="section-sub">Будую end-to-end рішення: від збору вимог до задеплоєного продукту. Спеціалізуюсь на інтеграції систем через API, no-code автоматизації (n8n, Make.com) та впровадженні LLM-агентів у реальні бізнес-процеси. До цього — 2+ роки аналітики в Ukrlandfarming PLC (100+ тис. га): ETL, звіти, прогнозування для керівництва.</p>
+  <div class="about-statement">
+    <div class="about-headline">
+      Автоматизую процеси і будую <span>AI-системи</span> під ключ
+    </div>
+    <div class="about-body">
+      <p>Спеціалізуюсь на побудові <strong>end-to-end інтеграцій та автоматизацій</strong>: від виявлення задачі до задеплоєного рішення. Підключаю системи через API, будую workflow на n8n і Make.com, впроваджую LLM-агентів у реальні бізнес-процеси.</p>
+      <p>Веду проект як <strong>BA + PM в одній особі</strong>: збираю вимоги, проектую архітектуру, контролюю виконання, навчаю команду. До цього — 2+ роки аналітики в <strong>Ukrlandfarming PLC</strong> (агрохолдинг, 100+ тис. га): ETL-пайплайни, аналітичні звіти, прогнозування ресурсів для керівництва.</p>
+      <p>Розумію і дані, і автоматизацію одночасно — це означає швидший старт, менше "зіпсованого телефону" між аналітиком і розробником.</p>
+    </div>
+  </div>
   <div class="skills-grid">
     <span class="skill-badge">n8n</span><span class="skill-badge">Make.com</span>
     <span class="skill-badge">LLM · AI Agents</span><span class="skill-badge">REST API · Webhooks</span>
