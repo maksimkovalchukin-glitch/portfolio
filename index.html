@@ -171,6 +171,12 @@
   .hero h1 .cursive-name { font-family: 'Caveat', cursive; font-weight: 600; color: var(--accent); letter-spacing: 0; font-size: 1.15em; }
   .hero-subtitle { font-size: 1.15rem; font-weight: 400; color: var(--text-muted); margin-bottom: 28px; letter-spacing: -0.2px; }
   .hero-subtitle strong { color: var(--text); font-weight: 700; }
+  .hero-typewriter-wrap { font-size: 1.05rem; font-weight: 400; color: var(--text); margin-bottom: 20px; min-height: 1.7em; padding-left: 16px; border-left: 3px solid #e2e8f0; }
+  .tw-cursor { display: inline-block; color: var(--accent); font-weight: 300; animation: twblink 1s step-end infinite; }
+  @keyframes twblink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .tw-a { color: var(--accent); font-weight: 600; }
+  .tw-g { color: #10b981; font-weight: 600; }
+  .tw-o { color: #f59e0b; font-weight: 600; }
   .hero-desc {
     font-size: 0.95rem; color: var(--text-muted); max-width: 460px;
     line-height: 1.78; margin-bottom: 36px;
@@ -392,6 +398,7 @@
     <div class="hero-left">
       <div class="hero-badge">Відкритий до нових пропозицій</div>
       <h1>Привіт, я <span class="cursive-name">Максим,</span></h1>
+      <div class="hero-typewriter-wrap"><span id="hero-typewriter"></span><span class="tw-cursor">|</span></div>
       <div class="hero-subtitle"><strong>Бізнес-аналітик</strong> з досвідом проектного менеджменту та впровадження інтеграцій і автоматизацій</div>
       <p class="hero-desc">
         Аналізую процеси, знаходжу де бізнес втрачає час — і впроваджую рішення. Від збору вимог до готового продукту в production.
@@ -1017,6 +1024,33 @@
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
+</script>
+<script>
+(function(){
+  const el = document.getElementById('hero-typewriter');
+  if (!el) return;
+  const phrases = [
+    { plain: 'Я збираю вимоги і перетворюю їх на продукт', html: 'Я <span class="tw-a">збираю вимоги</span> і перетворюю їх на <span class="tw-g">продукт</span>' },
+    { plain: 'Я автоматизую процеси через n8n і AI', html: 'Я <span class="tw-o">автоматизую процеси</span> через <span class="tw-a">n8n</span> і <span class="tw-g">AI</span>' },
+    { plain: 'Я впроваджую CRM-системи від нуля до production', html: 'Я <span class="tw-a">впроваджую CRM-системи</span> від нуля до <span class="tw-g">production</span>' },
+    { plain: 'Я аналізую дані і будую дашборди', html: 'Я <span class="tw-o">аналізую дані</span> і будую <span class="tw-a">дашборди</span>' },
+    { plain: 'Я веду проекти від ідеї до живої системи', html: 'Я <span class="tw-a">веду проекти</span> від ідеї до <span class="tw-g">живої системи</span>' },
+  ];
+  let state = 'typing', charIndex = 0, phraseIndex = 0;
+  function tick() {
+    const p = phrases[phraseIndex];
+    if (state === 'typing') {
+      if (charIndex < p.plain.length) { el.textContent = p.plain.slice(0, ++charIndex); setTimeout(tick, 55); }
+      else { el.innerHTML = p.html; state = 'pause'; setTimeout(tick, 2200); }
+    } else if (state === 'pause') {
+      state = 'erasing'; charIndex = p.plain.length; tick();
+    } else {
+      if (charIndex > 0) { el.textContent = p.plain.slice(0, --charIndex); setTimeout(tick, 28); }
+      else { el.textContent = ''; phraseIndex = (phraseIndex + 1) % phrases.length; charIndex = 0; state = 'typing'; setTimeout(tick, 350); }
+    }
+  }
+  tick();
+})();
 </script>
 </body>
 </html>
