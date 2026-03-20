@@ -419,9 +419,34 @@
     <p class="section-sub">Кожен проект — від виявлення проблеми до production і навчання команди.</p>
     <div class="projects-grid">
 
+      <div class="project-card featured" onclick="openModal('modal-ringostat')">
+        <div class="project-content">
+          <span class="project-tag tag-purple">Телефонія · AI · CRM</span>
+          <div class="project-title">AI-аналіз якості дзвінків — від проблеми до дашборду</div>
+          <p class="project-desc">Визначив проблему: не розуміємо як менеджери спілкуються з клієнтами. Провів аналіз, зібрав вимоги, замінив телефонію на Ringostat + Lifecell FMC, побудував AI-скоркарту і два дашборди якості.</p>
+          <div class="project-stack">
+            <span class="stack-badge">Ringostat</span><span class="stack-badge">Lifecell FMC</span>
+            <span class="stack-badge">AssemblyAI</span><span class="stack-badge">n8n</span><span class="stack-badge">LLM</span><span class="stack-badge">Pipedrive</span>
+          </div>
+          <div class="project-results">
+            <div class="result-item">Кожен дзвінок → AI-вижимка + бали автоматично в CRM</div>
+            <div class="result-item">Дашборд: 3 127 дзвінків, якість по 7 критеріях на співробітника</div>
+            <div class="result-item">Контрольний лист оцінки розроблено спільно з керівниками КЦ і продажів</div>
+          </div>
+          <div class="project-cta">Детальніше →</div>
+        </div>
+        <div class="project-visual">
+          <div class="screenshot-slot">
+            <img src="screenshots/pipedrive-ai-summary.jpg" alt="Pipedrive AI вижимка">
+          </div>
+          <div class="screenshot-slot">
+            <img src="screenshots/dashboard-calls-quality.jpg" alt="Дашборд якості">
+          </div>
+        </div>
+      </div>
+
       <div class="project-card featured" onclick="openModal('modal-kp')">
         <div class="project-content">
-
           <span class="project-tag tag-blue">Автоматизація · n8n · Google Docs API</span>
           <div class="project-title">Генератор комерційних пропозицій СЕС + УЗЕ</div>
           <p class="project-desc">Менеджери витрачали 1–3 год на кожен КП вручну. Побудував повний пайплайн: веб-форма → розрахунок → Google Doc шаблон → PDF → Telegram. Один клік — готовий КП.</p>
@@ -440,30 +465,12 @@
         </div>
         <div class="project-visual">
           <div class="screenshot-slot">
-            <img src="screenshots/kp-app-start.png" alt="Telegram Mini App" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-            <span class="placeholder-label" style="display:none">📸 Telegram Mini App — старт</span>
+            <img src="screenshots/kp-app-start.png" alt="Генератор КП старт">
           </div>
           <div class="screenshot-slot">
-            <img src="screenshots/kp-workflow-full.png" alt="n8n воркфлоу" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-            <span class="placeholder-label" style="display:none">📸 n8n воркфлоу</span>
+            <img src="screenshots/kp-workflow-full.png" alt="n8n воркфлоу">
           </div>
         </div>
-      </div>
-
-      <div class="project-card" onclick="openModal('modal-ringostat')">
-        <span class="project-tag tag-purple">Телефонія · AI · CRM</span>
-        <div class="project-title">AI-аналіз якості дзвінків — від проблеми до дашборду</div>
-        <p class="project-desc">Визначив проблему: не розуміємо як менеджери спілкуються з клієнтами. Провів аналіз, зібрав вимоги, замінив телефонію на Ringostat + Lifecell FMC, побудував AI-скоркарту і два дашборди якості.</p>
-        <div class="project-stack">
-          <span class="stack-badge">Ringostat</span><span class="stack-badge">Lifecell FMC</span>
-          <span class="stack-badge">AssemblyAI</span><span class="stack-badge">n8n</span><span class="stack-badge">LLM</span><span class="stack-badge">Pipedrive</span>
-        </div>
-        <div class="project-results">
-          <div class="result-item">Кожен дзвінок → AI-вижимка + бали автоматично в CRM</div>
-          <div class="result-item">Дашборд: 3 127 дзвінків, якість по 7 критеріях на співробітника</div>
-          <div class="result-item">Контрольний лист оцінки розроблено спільно з керівниками КЦ і продажів</div>
-        </div>
-        <div class="project-cta">Детальніше →</div>
       </div>
 
       <div class="project-card" onclick="openModal('modal-crm')">
