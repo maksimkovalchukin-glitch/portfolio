@@ -299,6 +299,24 @@
     .gallery-slot.full-width { grid-column: span 1; }
   }
 </style>
+<script>
+  const _img = new Image();
+  _img.onload = function() {
+    const c = document.createElement('canvas');
+    c.width = c.height = 64;
+    const ctx = c.getContext('2d');
+    ctx.beginPath();
+    ctx.arc(32, 32, 32, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.clip();
+    ctx.drawImage(_img, 0, 0, 64, 64);
+    const link = document.createElement('link');
+    link.rel = 'icon';
+    link.href = c.toDataURL('image/png');
+    document.head.appendChild(link);
+  };
+  _img.src = 'screenshots/avatar.jpg';
+</script>
 </head>
 <body>
 
