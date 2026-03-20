@@ -1052,13 +1052,13 @@
     const p = phrases[phraseIndex];
     const len = totalLen(p);
     if(state==='typing'){
-      if(charIndex<len){ el.innerHTML=buildHTML(p,++charIndex); setTimeout(tick,55); }
-      else { state='pause'; setTimeout(tick,2200); }
+      if(charIndex<len){ el.innerHTML=buildHTML(p,++charIndex); setTimeout(tick,32); }
+      else { state='pause'; setTimeout(tick,1800); }
     } else if(state==='pause'){
       state='erasing'; tick();
     } else {
-      if(charIndex>0){ el.innerHTML=buildHTML(p,--charIndex); setTimeout(tick,28); }
-      else { el.innerHTML=''; phraseIndex=(phraseIndex+1)%phrases.length; charIndex=0; state='typing'; setTimeout(tick,350); }
+      if(charIndex>0){ el.innerHTML=buildHTML(p,--charIndex); setTimeout(tick,16); }
+      else { el.innerHTML=''; phraseIndex=(phraseIndex+1)%phrases.length; charIndex=0; state='typing'; setTimeout(tick,280); }
     }
   }
   tick();
