@@ -452,16 +452,16 @@
 
       <div class="project-card" onclick="openModal('modal-ringostat')">
         <span class="project-tag tag-purple">Телефонія · AI · CRM</span>
-        <div class="project-title">Ringostat — IP-телефонія з AI-аналізом дзвінків</div>
-        <p class="project-desc">Перехід на FMC-номери Lifecell, побудова n8n воркфлоу для обробки дзвінків, AI-скоркарта оцінки якості (КЛС) з 5 паралельними GPT-4 агентами.</p>
+        <div class="project-title">AI-аналіз якості дзвінків — від проблеми до дашборду</div>
+        <p class="project-desc">Визначив проблему: не розуміємо як менеджери спілкуються з клієнтами. Провів аналіз, зібрав вимоги, замінив телефонію на Ringostat + Lifecell FMC, побудував AI-скоркарту і два дашборди якості.</p>
         <div class="project-stack">
-          <span class="stack-badge">Ringostat API</span><span class="stack-badge">n8n</span>
-          <span class="stack-badge">GPT-4</span><span class="stack-badge">Google Sheets</span><span class="stack-badge">Lifecell FMC</span>
+          <span class="stack-badge">Ringostat</span><span class="stack-badge">Lifecell FMC</span>
+          <span class="stack-badge">AssemblyAI</span><span class="stack-badge">n8n</span><span class="stack-badge">LLM</span><span class="stack-badge">Pipedrive</span>
         </div>
         <div class="project-results">
-          <div class="result-item">Кожен дзвінок → автоматична нотатка в CRM</div>
-          <div class="result-item">AI-скоркарта: 5 блоків, 100 балів, structured JSON</div>
-          <div class="result-item">Невідомий номер → автоматично новий лід у КЦ</div>
+          <div class="result-item">Кожен дзвінок → AI-вижимка + бали автоматично в CRM</div>
+          <div class="result-item">Дашборд: 3 127 дзвінків, якість по 7 критеріях на співробітника</div>
+          <div class="result-item">Контрольний лист оцінки розроблено спільно з керівниками КЦ і продажів</div>
         </div>
         <div class="project-cta">Детальніше →</div>
       </div>
@@ -728,67 +728,47 @@
   <div class="modal">
     <div class="modal-header">
       <span class="project-tag tag-purple" style="margin-bottom:8px;">Телефонія · AI · CRM</span>
-      <div style="font-size:1.4rem; font-weight:800; line-height:1.3; padding-right:48px; color:var(--text);">📞 Ringostat — IP-телефонія + AI-аналіз дзвінків</div>
+      <div style="font-size:1.4rem; font-weight:800; line-height:1.3; padding-right:48px; color:var(--text);">AI-аналіз якості дзвінків — від проблеми до дашборду</div>
       <button class="modal-close" onclick="closeModal('modal-ringostat')">✕</button>
     </div>
     <div class="modal-body">
       <div>
         <div class="modal-section-title">Проблема</div>
-        <p class="modal-text">Менеджери дзвонили з особистих мобільних — жодної фіксації в CRM, жодних записів розмов, неможливо оцінити якість роботи КЦ. КЦ і відділ продажів — повністю "чорна скринька" для керівника.</p>
+        <p class="modal-text">Кол-центр і відділ продажів — "чорна скринька". Не розуміємо як менеджери спілкуються з клієнтами, де втрачаються ліди, чи дотримуються скриптів. Менеджери з продажу — польові, постійно на зустрічах, без стаціонарного ПК.</p>
       </div>
       <div>
-        <div class="modal-section-title">Оцінка та перехід</div>
+        <div class="modal-section-title">Аналіз і вибір рішення</div>
         <div class="modal-steps">
-          <div class="modal-step"><div class="step-num">1</div><div><div class="step-content-title">Аналіз платформ і вибір Ringostat</div><div class="step-content-text">Оцінено webhook-подієву модель, вартість, зберігання записів, API для інтеграцій. Ringostat обрано за нативну підтримку FMC і якість транскрипції.</div></div></div>
-          <div class="modal-step"><div class="step-num">2</div><div><div class="step-content-title">Комунікація з Lifecell — FMC-номери</div><div class="step-content-text">Корпоративні SIM-картки прив'язані до SIP-лінії АТС Ringostat. Менеджери зберегли звичні мобільні номери — всі дзвінки проходять через систему і записуються.</div></div></div>
+          <div class="modal-step"><div class="step-num">1</div><div><div class="step-content-title">Оцінка телефонних платформ</div><div class="step-content-text">Порівняв кілька платформ за webhook-моделлю, API, зберіганням записів, підтримкою FMC. Обрано Ringostat — єдиний що нативно підтримує FMC-номери Lifecell для польових менеджерів.</div></div></div>
+          <div class="modal-step"><div class="step-num">2</div><div><div class="step-content-title">Узгодження з керівництвом і юридичним</div><div class="step-content-text">Підготував порівняння вартості, погодив договори з Ringostat і Lifecell, провів через юридичний відділ. Менеджери отримали корпоративні SIM — всі дзвінки тепер через систему.</div></div></div>
+          <div class="modal-step"><div class="step-num">3</div><div><div class="step-content-title">Збір вимог до контрольного листа</div><div class="step-content-text">Провів інтерв'ю з керівником КЦ і керівником відділу продажів. Визначили 7 критеріїв оцінки: Привітання, Виявлення потреб, Презентація рішень, Робота із запереченнями, Домовленість, Завершення дзвінка, Тон.</div></div></div>
         </div>
       </div>
       <div>
-        <div class="modal-section-title">n8n воркфлоу — обробка дзвінків</div>
+        <div class="modal-section-title">Результат</div>
         <div class="modal-steps">
-          <div class="modal-step"><div class="step-num">→</div><div><div class="step-content-title">Фільтрація внутрішніх номерів</div><div class="step-content-text">83 виключені SIP/мобільні номери співробітників у Google Sheets — дзвінки між своїми не потрапляють у CRM.</div></div></div>
-          <div class="modal-step"><div class="step-num">→</div><div><div class="step-content-title">Розподіл по відділах і типах</div><div class="step-content-text">Switch-вузли: тип дзвінка (NO ANSWER / ANSWERED / BUSY) × відділ (Оператор КЦ / Менеджер / Кредитний). Для кожної комбінації — свій сценарій дії в CRM.</div></div></div>
-          <div class="modal-step"><div class="step-num">→</div><div><div class="step-content-title">Знайдений / незнайдений контакт</div><div class="step-content-text">Відомий номер → прив'язка до угоди. Невідомий → автоматичне створення контакту + нового ліда у КЦ з позначкою "потребує кваліфікації".</div></div></div>
-        </div>
-      </div>
-      <div>
-        <div class="modal-section-title">AI Скоркарта оцінки дзвінків (КЛС)</div>
-        <p class="modal-text" style="margin-bottom:16px;"><strong>5 паралельних GPT-4 агентів</strong> зі Structured Output Parser (JSON):</p>
-        <div style="overflow-x:auto;">
-          <table style="width:100%; border-collapse:collapse; font-size:0.84rem;">
-            <thead><tr style="border-bottom:1px solid var(--border);">
-              <th style="text-align:left; padding:8px 12px; color:var(--text-muted); font-weight:600;">Агент</th>
-              <th style="text-align:left; padding:8px 12px; color:var(--text-muted); font-weight:600;">Блок оцінки</th>
-              <th style="text-align:right; padding:8px 12px; color:var(--text-muted); font-weight:600;">Балів</th>
-            </tr></thead>
-            <tbody>
-              <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px; color:var(--accent);">Greating</td><td style="padding:8px 12px; color:var(--text-muted);">Привітання + Завершення</td><td style="padding:8px 12px; text-align:right;">15</td></tr>
-              <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px; color:var(--accent);">Needs</td><td style="padding:8px 12px; color:var(--text-muted);">Виявлення потреб</td><td style="padding:8px 12px; text-align:right;">25</td></tr>
-              <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px; color:var(--accent);">Solution</td><td style="padding:8px 12px; color:var(--text-muted);">Презентація + Робота із запереченнями</td><td style="padding:8px 12px; text-align:right;">35</td></tr>
-              <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px 12px; color:var(--accent);">Agreement</td><td style="padding:8px 12px; color:var(--text-muted);">Домовленість + Додатково</td><td style="padding:8px 12px; text-align:right;">15</td></tr>
-              <tr><td style="padding:8px 12px; color:var(--accent);">Summary</td><td style="padding:8px 12px; color:var(--text-muted);">HTML-нотатка + total_score + зацікавленість %</td><td style="padding:8px 12px; text-align:right;">—</td></tr>
-            </tbody>
-          </table>
+          <div class="modal-step"><div class="step-num">→</div><div><div class="step-content-title">AI-вижимка в CRM після кожного дзвінка</div><div class="step-content-text">Кожна розмова автоматично транскрибується, AI формує короткий зміст і бали по критеріях — все потрапляє в картку клієнта. Керівник бачить стан проекту без прослуховування записів.</div></div></div>
+          <div class="modal-step"><div class="step-num">→</div><div><div class="step-content-title">Два дашборди якості</div><div class="step-content-text">Статистика дзвінків (3 127 дзвінків, динаміка, лог з посиланнями на записи) + якість по співробітниках (середній бал 65, деталізація по 7 критеріях, успішність).</div></div></div>
         </div>
       </div>
       <div>
         <div class="modal-section-title">Скріни</div>
         <div class="screenshots-gallery">
           <div class="gallery-slot full-width" onclick="openLightbox(this)">
-            <img src="screenshots/ringostat-workflow.png" alt="Ringostat воркфлоу" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <span class="slot-label" style="display:none">📸 n8n — Вхідні дзвінки Ringostat</span>
+            <img src="screenshots/pipedrive-ai-summary.jpg" alt="Pipedrive — AI вижимка дзвінка">
+            <span class="slot-label" style="display:none">Pipedrive CRM — AI-вижимка і бали після кожного дзвінка</span>
           </div>
           <div class="gallery-slot" onclick="openLightbox(this)">
-            <img src="screenshots/call-analysis-workflow.png" alt="Call Analysis" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <span class="slot-label" style="display:none">📸 Call Analysis — 5 GPT-4 агентів</span>
+            <img src="screenshots/dashboard-calls-stats.jpg" alt="Дашборд статистики дзвінків">
+            <span class="slot-label" style="display:none">Дашборд — статистика дзвінків</span>
           </div>
           <div class="gallery-slot" onclick="openLightbox(this)">
-            <img src="screenshots/odoo-crm-ai-call.png" alt="CRM AI нотатка" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <span class="slot-label" style="display:none">📸 Odoo CRM — AI вижимка дзвінка</span>
+            <img src="screenshots/dashboard-calls-quality.jpg" alt="Дашборд якості дзвінків">
+            <span class="slot-label" style="display:none">Дашборд — якість по співробітниках</span>
           </div>
-          <div class="gallery-slot" onclick="openLightbox(this)">
-            <img src="screenshots/tg-groups-workflow.png" alt="TG груп воркфлоу" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <span class="slot-label" style="display:none">📸 TG Bot — створення груп</span>
+          <div class="gallery-slot full-width" onclick="openLightbox(this)">
+            <img src="screenshots/ringostat-workflow.png" alt="n8n воркфлоу">
+            <span class="slot-label" style="display:none">n8n — воркфлоу обробки дзвінків</span>
           </div>
         </div>
       </div>
