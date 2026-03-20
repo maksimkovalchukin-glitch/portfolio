@@ -899,23 +899,24 @@
 <div class="modal-overlay" id="modal-crm" onclick="handleOverlayClick(event, 'modal-crm')">
   <div class="modal">
     <div class="modal-header">
-      <span class="project-tag tag-green" style="margin-bottom:8px;">Odoo 17 · Python · CRM</span>
-      <div style="font-size:1.4rem; font-weight:800; line-height:1.3; padding-right:48px; color:var(--text);">🎯 Кастомна CRM-система на Odoo 17</div>
+      <span class="project-tag tag-green" style="margin-bottom:8px;">Odoo 17 · Python · Автоматизація</span>
+      <div style="font-size:1.4rem; font-weight:800; line-height:1.3; padding-right:48px; color:var(--text);">⚙️ Кастомізація Odoo: CRM, Project Hub, автоматизація</div>
       <button class="modal-close" onclick="closeModal('modal-crm')">✕</button>
     </div>
     <div class="modal-body">
       <div>
-        <div class="modal-section-title">Проблема</div>
-        <p class="modal-text">Pipedrive покривав лише воронку продажів і не мав інструментів для кастомної логіки КЦ: розподіл лідів між операторами, черга менеджерів, передача між відділами, КПІ-аналітика.</p>
+        <div class="modal-section-title">Контекст</div>
+        <p class="modal-text">Після прийняття рішення і розгортання Odoo почалась реальна робота: збір вимог по кожному відділу, проектування кастомних модулів, впровадження автоматизацій. Всі модулі написані з нуля під специфіку бізнесу.</p>
       </div>
       <div>
         <div class="modal-section-title">Реалізовано</div>
         <div class="modal-steps">
-          <div class="modal-step"><div class="step-num">1</div><div><div class="step-content-title">Ролі та права доступу (4 групи)</div><div class="step-content-text">Оператор КЦ, Менеджер з продажу, Кредитний спеціаліст, Керівник КЦ. Кожна роль бачить тільки свою частину CRM.</div></div></div>
-          <div class="modal-step"><div class="step-num">2</div><div><div class="step-content-title">Черга менеджерів і передача лідів</div><div class="step-content-text">3 типи черги (KCC / incoming / credit), пауза менеджера, лічильник лідів. Wizard передачі з логом усіх переміщень.</div></div></div>
-          <div class="modal-step"><div class="step-num">3</div><div><div class="step-content-title">КПІ менеджерів — 15+ метрик</div><div class="step-content-text">Дашборд по кожному менеджеру: ліди з комунікацією, заплановані активності, прострочені, зустрічі, дзвінки Ringostat.</div></div></div>
-          <div class="modal-step"><div class="step-num">4</div><div><div class="step-content-title">Telegram ↔ Odoo двостороння синхронізація</div><div class="step-content-text">Нативно через Telegram Bot API (без n8n). Текст, фото, документи, голосові — в обидва боки. 58 маппінгів TG username → Odoo user.</div></div></div>
-          <div class="modal-step"><div class="step-num">5</div><div><div class="step-content-title">Міграція Pipedrive → Odoo (~90%)</div><div class="step-content-text">Перенесення угод, контактів, компаній, активностей через Pipedrive API + Odoo RPC.</div></div></div>
+          <div class="modal-step"><div class="step-num">1</div><div><div class="step-content-title">Кастомна CRM-логіка (rayton_crm)</div><div class="step-content-text">4 ролі доступу (Оператор КЦ, Менеджер, Кредитний спеціаліст, Керівник). 3 типи черги лідів, пауза менеджера, wizard передачі між відділами з повним логом. КПІ-дашборд: 15+ метрик по кожному менеджеру.</div></div></div>
+          <div class="modal-step"><div class="step-num">2</div><div><div class="step-content-title">Автоматична ініціація проекту (rayton_project_hub)</div><div class="step-content-text">При переведенні угоди в статус "Проект" — автоматично створюється проект в Odoo з шаблонними задачами по етапах, призначаються відповідальні, запускається Discuss-чат команди. Структура проекту стандартизована — жоден крок не пропускається.</div></div></div>
+          <div class="modal-step"><div class="step-num">3</div><div><div class="step-content-title">Автоматичне створення Telegram-груп</div><div class="step-content-text">Разом зі створенням проекту n8n-воркфлоу автоматично створює окрему Telegram-групу для команди проекту, додає відповідних учасників і прив'язує її до картки в Odoo. Комунікація по проекту одразу централізована.</div></div></div>
+          <div class="modal-step"><div class="step-num">4</div><div><div class="step-content-title">Інтеграція з телефонією і AI-аналізом дзвінків</div><div class="step-content-text">Ringostat webhook → транскрипція → AI-оцінка по скрипту → результат потрапляє в картку ліда в Odoo. Менеджер бачить короткий зміст і бали дзвінка без прослуховування запису.</div></div></div>
+          <div class="modal-step"><div class="step-num">5</div><div><div class="step-content-title">Telegram ↔ Odoo двостороння синхронізація</div><div class="step-content-text">Нативна інтеграція через Telegram Bot API. Текст, фото, документи, голосові — в обидва боки. Маппінг TG username → Odoo user для всіх співробітників.</div></div></div>
+          <div class="modal-step"><div class="step-num">6</div><div><div class="step-content-title">Міграція Pipedrive → Odoo</div><div class="step-content-text">Перенесення угод, контактів, компаній, активностей через Pipedrive API + Odoo RPC. ~90% даних мігровано.</div></div></div>
         </div>
       </div>
       <div>
@@ -959,23 +960,32 @@
     <div class="modal-body">
       <div>
         <div class="modal-section-title">Контекст</div>
-        <p class="modal-text">Компанія Rayton (60+ співробітників, 12 відділів) використовувала Pipedrive, Asana, Google Sheets — без єдиної системи. Потрібно було обґрунтувати перехід і захистити рішення перед власниками.</p>
+        <p class="modal-text">Компанія використовувала Pipedrive, Google Sheets і кілька розрізнених інструментів без єдиного центру. Дані дублювались, процеси не відстежувались, керівництво не мало цілісної картини. Виникло питання: чи переходити на єдину платформу і яку саме.</p>
       </div>
       <div>
         <div class="modal-section-title">Порівняльний аналіз платформ</div>
+        <p class="modal-text" style="margin-bottom:12px;">Провів поверхневий аналіз широкого ринку (Pipedrive, Bitrix24, HubSpot, Monday, Asana, Jira, Notion та інші), після чого відібрав фіналістів для глибшого порівняння:</p>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-          <div style="background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px;"><div style="font-size:0.78rem; color:var(--text-dim); margin-bottom:6px;">Pipedrive</div><div style="font-size:0.84rem; color:var(--text-muted);">Тільки CRM. Склад, проекти, кастомна логіка — відсутні.</div></div>
-          <div style="background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px;"><div style="font-size:0.78rem; color:var(--text-dim); margin-bottom:6px;">Asana / Jira</div><div style="font-size:0.84rem; color:var(--text-muted);">Тільки задачі. CRM, документи, склад — відсутні.</div></div>
-          <div style="background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px;"><div style="font-size:0.78rem; color:var(--text-dim); margin-bottom:6px;">Bitrix24</div><div style="font-size:0.84rem; color:var(--text-muted);">Частково покриває, але жорстка архітектура, слабка кастомізація.</div></div>
-          <div style="background:var(--accent-light); border:1px solid rgba(99,102,241,0.25); border-radius:10px; padding:14px;"><div style="font-size:0.78rem; color:var(--accent-text); margin-bottom:6px;">✦ Odoo — обрано</div><div style="font-size:0.84rem; color:var(--text-muted);">CRM + проекти + склад + генерація документів + кастомна Python-логіка.</div></div>
+          <div style="background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px;"><div style="font-size:0.78rem; color:var(--text-dim); margin-bottom:6px;">Pipedrive</div><div style="font-size:0.84rem; color:var(--text-muted);">Тільки CRM-воронка. Склад, проекти, кастомна логіка — відсутні. Масштабування обмежене.</div></div>
+          <div style="background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px;"><div style="font-size:0.78rem; color:var(--text-dim); margin-bottom:6px;">Asana / Jira / Monday</div><div style="font-size:0.84rem; color:var(--text-muted);">Тестували і оцінювали. Зручні для задач, але CRM, документи, склад — відсутні.</div></div>
+          <div style="background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:14px;"><div style="font-size:0.78rem; color:var(--text-dim); margin-bottom:6px;">Bitrix24</div><div style="font-size:0.84rem; color:var(--text-muted);">Частково покриває потреби, але жорстка архітектура і слабка кастомізація під специфіку бізнесу.</div></div>
+          <div style="background:var(--accent-light); border:1px solid rgba(99,102,241,0.25); border-radius:10px; padding:14px;"><div style="font-size:0.78rem; color:var(--accent-text); margin-bottom:6px;">✦ Odoo — обрано</div><div style="font-size:0.84rem; color:var(--text-muted);">CRM + проекти + склад + документи + необмежена кастомізація через Python-модулі.</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="modal-section-title">Від аналізу до реального тесту</div>
+        <div class="modal-steps">
+          <div class="modal-step"><div class="step-num">1</div><div><div class="step-content-title">Рішення поглибитись і протестувати реально</div><div class="step-content-text">Після поверхневого аналізу стало зрозуміло: щоб захистити рішення перед власниками, потрібен реальний досвід, а не порівняльні таблиці. Прийнято рішення розгорнути Odoo Community на власному сервері і перевести туди реальні дані та процеси компанії.</div></div></div>
+          <div class="modal-step"><div class="step-num">2</div><div><div class="step-content-title">Self-hosted розгортання і міграція даних</div><div class="step-content-text">Розгорнув Odoo Community на CloudPepper. Перенесли дані з Pipedrive: угоди, контакти, компанії, активності — через Pipedrive API і Odoo RPC. Це дало змогу одразу тестувати систему на реальних даних компанії, а не синтетичних прикладах.</div></div></div>
+          <div class="modal-step"><div class="step-num">3</div><div><div class="step-content-title">Тестування логіки і підготовка висновків</div><div class="step-content-text">Протестували ключові процеси: CRM-воронка, проекти, комунікація, генерація документів. Зафіксували що покривається нативно, що потребує кастомізації. На основі цього підготував обґрунтування і захистив рішення перед власниками.</div></div></div>
         </div>
       </div>
       <div>
         <div class="modal-section-title">Оцінка варіантів впровадження</div>
         <div class="modal-steps">
-          <div class="modal-step"><div class="step-num">A</div><div><div class="step-content-title">Власний Odoo-розробник в штаті</div><div class="step-content-text">~$2–3 тис/міс. Повний контроль, знання бізнесу зсередини. Ризик: важко знайти, залежність від однієї людини.</div></div></div>
-          <div class="modal-step"><div class="step-num">B</div><div><div class="step-content-title">Команда інтеграторів (Netframe)</div><div class="step-content-text">47–66 тис. € проект + підтримка. Висока якість архітектури. Мінус: довший старт (14–18 міс).</div></div></div>
-          <div class="modal-step"><div class="step-num">★</div><div><div class="step-content-title">Рекомендований: Гібридний варіант</div><div class="step-content-text">Штатна людина (BA/PM що розуміє Odoo) керує інтеграторами, ставить задачі, захищає інтереси компанії.</div></div></div>
+          <div class="modal-step"><div class="step-num">A</div><div><div class="step-content-title">Власний Odoo-розробник в штаті</div><div class="step-content-text">Повний контроль, знання бізнесу зсередини. Ризик: важко знайти спеціаліста, залежність від однієї людини.</div></div></div>
+          <div class="modal-step"><div class="step-num">B</div><div><div class="step-content-title">Команда інтеграторів (Netframe)</div><div class="step-content-text">47–66 тис. € проект + підтримка. Висока якість архітектури. Мінус: довший старт (14–18 міс), менше гнучкості.</div></div></div>
+          <div class="modal-step"><div class="step-num">★</div><div><div class="step-content-title">Рекомендований: Гібридний варіант</div><div class="step-content-text">Штатна людина (BA/PM що розуміє Odoo) керує інтеграторами, ставить задачі, захищає інтереси компанії. Обраний варіант.</div></div></div>
         </div>
       </div>
       <div>
@@ -994,10 +1004,10 @@
       <div>
         <div class="modal-section-title">Результат</div>
         <div class="result-chips">
-          <div class="result-chip">Рішення прийнято власниками</div>
-          <div class="result-chip">Odoo в production на 60+ користувачів</div>
-          <div class="result-chip">40% процесів автоматизовано</div>
-          <div class="result-chip">Стратегічний roadmap на 12 місяців</div>
+          <div class="result-chip">Рішення прийнято і захищено перед власниками</div>
+          <div class="result-chip">Self-hosted Odoo Community розгорнуто</div>
+          <div class="result-chip">Дані мігровано з Pipedrive</div>
+          <div class="result-chip">Roadmap кастомізації сформовано</div>
         </div>
       </div>
     </div>
